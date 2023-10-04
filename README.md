@@ -94,6 +94,14 @@ int main() {
 # Assembly Code
 
 ```
+gcc sample.c
+./a.out
+riscv64-unknown-elf-gcc -c -mabi=lp64 -march=rv64i -o sample.o sample.c
+riscv64-unknown-elf-objdump -d sample.o
+
+```
+
+```
 
 sample.o:     file format elf64-littleriscv
 
