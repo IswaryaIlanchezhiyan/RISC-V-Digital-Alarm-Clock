@@ -20,6 +20,8 @@ Digital clocks are also known as LED clocks or liquid crystal displays (LCDs).
 
 # Block Diagram
 
+![Digital Alarm Clock Block Diagram](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/c282028d-482d-447f-bdba-ac5032e157b8)
+
 
 
 
