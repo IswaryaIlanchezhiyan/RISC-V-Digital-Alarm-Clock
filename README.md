@@ -18,5 +18,8 @@ The advantage of digital alarm clocks over analogue alarm clocks is that they re
 
 Digital clocks are also known as LED clocks or liquid crystal displays (LCDs).
 
+# Block Diagram
+
+
 
 
