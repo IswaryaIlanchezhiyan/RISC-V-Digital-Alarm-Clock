@@ -286,5 +286,39 @@ Disassembly of section .text:
 
 ```
 
+# Unique Instructions
+
+Create a sample_assembly.txt file and dump the assembly code into this file.Now,run the instruction_counter.py file.
+
+```
+
+cd home/Documents/ASIC$ python3 instruction_counter.py
+
+```
+
+```
+
+Number of different instructions: 17
+List of unique instructions:
+addiw
+sd
+mv
+j
+li
+nop
+bne
+jalr
+ld
+beqz
+addi
+sw
+lui
+auipc
+lw
+ret
+sext.w
+
+```
+
 
 
