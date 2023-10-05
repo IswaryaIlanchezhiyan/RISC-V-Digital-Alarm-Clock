@@ -96,14 +96,14 @@ int main() {
 ```
 gcc sample.c
 ./a.out
-riscv64-unknown-elf-gcc -c -mabi=lp32 -march=rv32i -o sample.o sample.c
-riscv64-unknown-elf-objdump -d sample.o
+riscv32-unknown-elf-gcc -c -mabi=ilp32 -march=rv32im -ffreestanding -o ./sample sample.c
+riscv32-unknown-elf-objdump -d sample
 
 ```
 
 ```
 
-iswarya.o:     file format elf32-littleriscv
+sample.o:     file format elf32-littleriscv
 
 
 Disassembly of section .text:
@@ -265,6 +265,21 @@ cd home/Documents/ASIC$ python3 instruction_counter.py
 
 ```
 
+Number of different instructions: 13
+List of unique instructions:
+jalr
+li
+beqz
+lw
+sw
+ret
+add
+auipc
+lui
+mv
+bne
+nop
+j
 
 
 ```
