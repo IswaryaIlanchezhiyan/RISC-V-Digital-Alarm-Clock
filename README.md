@@ -52,6 +52,70 @@ void displayAlarm(int hours, int minutes)
     
 }
 
+
+unsigned char read_keypad(void)
+{
+	unsigned char keypad;
+	unsigned char row[5]={14,13,11,7,0};
+	unsigned char i=0;
+	//for(unsigned char i=14;i<9;i=i*2)
+	while(row[i]>0)
+	{
+		asm(
+	    	"or x30, x30, %0\n\t"
+	    	:"=r"(row[i]));
+	    	
+	    	asm(
+	    	"and %0, x30, 240\n\t"
+	    	:"=r"(keypad));
+	    	if(keypad!=240)
+	    	{
+	    		//unsigned char pressed=1;
+	    		break;
+		}
+		i++;
+		
+	}
+	if(row[i]==0)//no button pressed
+	{
+		return -1;
+	}
+	else
+	{
+		if(row[i]==14)//row=1
+		{
+			if(keypad==224) keypad=96;//1
+			else if(keypad==208) keypad=109;//2
+			else if(keypad==176) keypad=121;//3
+			else if(keypad==112) keypad=119;//A
+		}
+		else if(row[i]==13)//row=2
+		{
+			if(keypad==224) keypad=51;//4
+			else if(keypad==208) keypad=91;//5
+			else if(keypad==176) keypad=94;//6
+			else if(keypad==112) keypad=15;//B
+		}
+		else if(row[i]==11)//row=3
+		{
+			if(keypad==224) keypad=112;//7
+			else if(keypad==208) keypad=127;//8
+			else if(keypad==176) keypad=115;//9
+			else if(keypad==112) keypad=78;//C
+		}
+		else if(row[i]==7)//row=4
+		{
+			if(keypad==224) keypad=1;//-
+			else if(keypad==208) keypad=127;//0
+			else if(keypad==176) keypad=1;//-
+			else if(keypad==112) keypad=125;//D
+		}
+	}
+	
+        
+        return keypad;
+}
+
 // Function to check if the current time matches the alarm time
 int isAlarmTime(int currentHours, int currentMinutes, int alarmHours, int alarmMinutes)
 {
@@ -72,22 +136,26 @@ int main()
     
 
     // Set the alarm time (you can modify these values)
-    // printf("Enter alarm hour time: ");
-    // scanf("%d", &alarmHours);
+     //printf("Enter alarm hour time: ");
+     //scanf("%d", &alarmHours);
 
-    // printf("Enter alarm minute time: ");
-    // scanf("%d", &alarmMinutes);
-    // char h1 = read_keypad();
-    // char h2 = read_keypad();
-    // char m1 = read_keypad();
-    // char m2 = read_keypad();
+     //printf("Enter alarm minute time: ");
+     //scanf("%d", &alarmMinutes);
+     char h1 = read_keypad();
+     char h2 = read_keypad();
+     char m1 = read_keypad();
+     char m2 = read_keypad();
 
     // ------------------- Add the scanf code here ----------------------------
-    // asm(
-    //     "addi x10, x30, 0\n\t"
-    //     "and %0, x10, %1\n\t"
-    //     : "=r"(currentHours)
-    //     : "r"(val1));
+    asm(
+    "andi %0, x30, 1\n\t"
+    :"=r"(alarmHours));
+    
+     asm(
+    "andi %0, x30, 1\n\t"
+    :"=r"(alarmMinutes));
+    
+    
 
     time_t t = time(0);
     time(&t);
@@ -133,15 +201,15 @@ int main()
         }
 
         // Display the alarm time
-        // displayAlarm(alarmHours, alarmMinutes);
+        displayAlarm(alarmHours, alarmMinutes);
 
         // Sleep for one second (in a real-world scenario, you'd use a timer interrupt)
         sleep(1);
+        
     }
 
     return 0;
 }
-
 
 ```
 
