@@ -402,24 +402,22 @@ cd home/Documents/ASIC$ python3 instruction_counter.py
 
 Number of different instructions: 16
 List of unique instructions:
-li
-j
-jalr
-bne
-add
 lw
-lui
-nop
-beqz
-or
-sw
+j
 mv
-auipc
 bnez
 sll
+sw
+add
+bne
+or
+auipc
+lui
+beqz
+jalr
 ret
-
-
+li
+nop
 
 ```
 
