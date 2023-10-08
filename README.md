@@ -239,7 +239,7 @@ int isAlarmTime(int currentHours, int currentMinutes, int alarmHours, int alarmM
 # Assembly Code
 
 ```
-gcc sample.c
+gcc clock.c
 ./a.out
 /home/iswarya/riscv32-toolchain/bin riscv32-unknown-elf-gcc -c -mabi=ilp32 -march=rv32im -ffreestanding -nostdlib -o ./clock clock.c
 riscv32-unknown-elf-objdump -d -r clock
@@ -714,7 +714,7 @@ Create a sample_assembly.txt file and dump the assembly code into this file.Now,
 
 ```
 
-cd home/Documents/ASIC$ python3 instruction_counter.py
+ python3 instruction_counter.py
 
 ```
 
