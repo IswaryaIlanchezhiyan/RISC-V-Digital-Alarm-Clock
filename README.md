@@ -241,8 +241,8 @@ int isAlarmTime(int currentHours, int currentMinutes, int alarmHours, int alarmM
 ```
 gcc clock.c
 ./a.out
-/home/iswarya/riscv32-toolchain/bin riscv32-unknown-elf-gcc -mabi=ilp32 -march=rv32im -ffreestanding -nostdlib -o ./clock clock.c
-riscv32-unknown-elf-objdump -d -r clock
+/home/iswarya/riscv_toolchain/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14/bin riscv64-unkown-elf-gcc -march=rv32i -mabi=ilp32 -ffreestanding -nostdlib -o ./out clock.c
+riscv64-unknown-elf-objdump -d -r out > sample_assembly.txt
 
 ```
 
