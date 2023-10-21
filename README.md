@@ -249,6 +249,7 @@ riscv64-unknown-elf-objdump -d -r out > sample_assembly.txt
 ```
 
 
+
 out:     file format elf32-littleriscv
 
 
@@ -333,7 +334,7 @@ Disassembly of section .text:
    10180:	fc442603          	lw	a2,-60(s0)
    10184:	fe842583          	lw	a1,-24(s0)
    10188:	fec42503          	lw	a0,-20(s0)
-   1018c:	35c000ef          	jal	ra,104e8 <isAlarmTime>
+   1018c:	36c000ef          	jal	ra,104f8 <isAlarmTime>
    10190:	00050793          	mv	a5,a0
    10194:	02078463          	beqz	a5,101bc <main+0x168>
    10198:	fe042783          	lw	a5,-32(s0)
@@ -349,7 +350,7 @@ Disassembly of section .text:
    101c0:	fc442603          	lw	a2,-60(s0)
    101c4:	fe842583          	lw	a1,-24(s0)
    101c8:	fec42503          	lw	a0,-20(s0)
-   101cc:	31c000ef          	jal	ra,104e8 <isAlarmTime>
+   101cc:	32c000ef          	jal	ra,104f8 <isAlarmTime>
    101d0:	00050793          	mv	a5,a0
    101d4:	00079463          	bnez	a5,101dc <main+0x188>
    101d8:	fe042023          	sw	zero,-32(s0)
@@ -396,186 +397,191 @@ Disassembly of section .text:
    10264:	00812e23          	sw	s0,28(sp)
    10268:	02010413          	addi	s0,sp,32
    1026c:	000117b7          	lui	a5,0x11
-   10270:	53878793          	addi	a5,a5,1336 # 11538 <__DATA_BEGIN__>
+   10270:	54878793          	addi	a5,a5,1352 # 11548 <__DATA_BEGIN__>
    10274:	0007a703          	lw	a4,0(a5)
-   10278:	fee42423          	sw	a4,-24(s0)
+   10278:	fee42023          	sw	a4,-32(s0)
    1027c:	0047c783          	lbu	a5,4(a5)
-   10280:	fef40623          	sb	a5,-20(s0)
+   10280:	fef40223          	sb	a5,-28(s0)
    10284:	fe040723          	sb	zero,-18(s0)
-   10288:	0380006f          	j	102c0 <read_keypad+0x60>
-   1028c:	fee44783          	lbu	a5,-18(s0)
-   10290:	ff040713          	addi	a4,s0,-16
-   10294:	00f707b3          	add	a5,a4,a5
-   10298:	ff87c783          	lbu	a5,-8(a5)
-   1029c:	00ff6f33          	or	t5,t5,a5
-   102a0:	0f0f7793          	andi	a5,t5,240
-   102a4:	fef407a3          	sb	a5,-17(s0)
-   102a8:	fef44703          	lbu	a4,-17(s0)
-   102ac:	0f000793          	li	a5,240
-   102b0:	02f71463          	bne	a4,a5,102d8 <read_keypad+0x78>
-   102b4:	fee44783          	lbu	a5,-18(s0)
-   102b8:	00178793          	addi	a5,a5,1
-   102bc:	fef40723          	sb	a5,-18(s0)
-   102c0:	fee44783          	lbu	a5,-18(s0)
-   102c4:	ff040713          	addi	a4,s0,-16
-   102c8:	00f707b3          	add	a5,a4,a5
-   102cc:	ff87c783          	lbu	a5,-8(a5)
-   102d0:	fa079ee3          	bnez	a5,1028c <read_keypad+0x2c>
-   102d4:	0080006f          	j	102dc <read_keypad+0x7c>
-   102d8:	00000013          	nop
-   102dc:	fee44783          	lbu	a5,-18(s0)
-   102e0:	ff040713          	addi	a4,s0,-16
-   102e4:	00f707b3          	add	a5,a4,a5
-   102e8:	ff87c783          	lbu	a5,-8(a5)
-   102ec:	00079663          	bnez	a5,102f8 <read_keypad+0x98>
-   102f0:	0ff00793          	li	a5,255
-   102f4:	1e40006f          	j	104d8 <read_keypad+0x278>
-   102f8:	fee44783          	lbu	a5,-18(s0)
-   102fc:	ff040713          	addi	a4,s0,-16
-   10300:	00f707b3          	add	a5,a4,a5
-   10304:	ff87c703          	lbu	a4,-8(a5)
-   10308:	00e00793          	li	a5,14
-   1030c:	06f71263          	bne	a4,a5,10370 <read_keypad+0x110>
-   10310:	fef44703          	lbu	a4,-17(s0)
-   10314:	0e000793          	li	a5,224
-   10318:	00f71863          	bne	a4,a5,10328 <read_keypad+0xc8>
-   1031c:	06000793          	li	a5,96
-   10320:	fef407a3          	sb	a5,-17(s0)
-   10324:	1b00006f          	j	104d4 <read_keypad+0x274>
-   10328:	fef44703          	lbu	a4,-17(s0)
-   1032c:	0d000793          	li	a5,208
-   10330:	00f71863          	bne	a4,a5,10340 <read_keypad+0xe0>
-   10334:	06d00793          	li	a5,109
-   10338:	fef407a3          	sb	a5,-17(s0)
-   1033c:	1980006f          	j	104d4 <read_keypad+0x274>
-   10340:	fef44703          	lbu	a4,-17(s0)
-   10344:	0b000793          	li	a5,176
-   10348:	00f71863          	bne	a4,a5,10358 <read_keypad+0xf8>
-   1034c:	07900793          	li	a5,121
-   10350:	fef407a3          	sb	a5,-17(s0)
-   10354:	1800006f          	j	104d4 <read_keypad+0x274>
-   10358:	fef44703          	lbu	a4,-17(s0)
-   1035c:	07000793          	li	a5,112
-   10360:	16f71a63          	bne	a4,a5,104d4 <read_keypad+0x274>
-   10364:	07700793          	li	a5,119
-   10368:	fef407a3          	sb	a5,-17(s0)
-   1036c:	1680006f          	j	104d4 <read_keypad+0x274>
-   10370:	fee44783          	lbu	a5,-18(s0)
-   10374:	ff040713          	addi	a4,s0,-16
-   10378:	00f707b3          	add	a5,a4,a5
-   1037c:	ff87c703          	lbu	a4,-8(a5)
-   10380:	00d00793          	li	a5,13
-   10384:	06f71263          	bne	a4,a5,103e8 <read_keypad+0x188>
-   10388:	fef44703          	lbu	a4,-17(s0)
-   1038c:	0e000793          	li	a5,224
-   10390:	00f71863          	bne	a4,a5,103a0 <read_keypad+0x140>
-   10394:	03300793          	li	a5,51
-   10398:	fef407a3          	sb	a5,-17(s0)
-   1039c:	1380006f          	j	104d4 <read_keypad+0x274>
-   103a0:	fef44703          	lbu	a4,-17(s0)
-   103a4:	0d000793          	li	a5,208
-   103a8:	00f71863          	bne	a4,a5,103b8 <read_keypad+0x158>
-   103ac:	05b00793          	li	a5,91
-   103b0:	fef407a3          	sb	a5,-17(s0)
-   103b4:	1200006f          	j	104d4 <read_keypad+0x274>
-   103b8:	fef44703          	lbu	a4,-17(s0)
-   103bc:	0b000793          	li	a5,176
-   103c0:	00f71863          	bne	a4,a5,103d0 <read_keypad+0x170>
-   103c4:	05e00793          	li	a5,94
-   103c8:	fef407a3          	sb	a5,-17(s0)
-   103cc:	1080006f          	j	104d4 <read_keypad+0x274>
-   103d0:	fef44703          	lbu	a4,-17(s0)
-   103d4:	07000793          	li	a5,112
-   103d8:	0ef71e63          	bne	a4,a5,104d4 <read_keypad+0x274>
-   103dc:	00f00793          	li	a5,15
-   103e0:	fef407a3          	sb	a5,-17(s0)
-   103e4:	0f00006f          	j	104d4 <read_keypad+0x274>
-   103e8:	fee44783          	lbu	a5,-18(s0)
-   103ec:	ff040713          	addi	a4,s0,-16
-   103f0:	00f707b3          	add	a5,a4,a5
-   103f4:	ff87c703          	lbu	a4,-8(a5)
-   103f8:	00b00793          	li	a5,11
-   103fc:	06f71263          	bne	a4,a5,10460 <read_keypad+0x200>
-   10400:	fef44703          	lbu	a4,-17(s0)
-   10404:	0e000793          	li	a5,224
-   10408:	00f71863          	bne	a4,a5,10418 <read_keypad+0x1b8>
-   1040c:	07000793          	li	a5,112
-   10410:	fef407a3          	sb	a5,-17(s0)
-   10414:	0c00006f          	j	104d4 <read_keypad+0x274>
-   10418:	fef44703          	lbu	a4,-17(s0)
-   1041c:	0d000793          	li	a5,208
-   10420:	00f71863          	bne	a4,a5,10430 <read_keypad+0x1d0>
-   10424:	07f00793          	li	a5,127
-   10428:	fef407a3          	sb	a5,-17(s0)
-   1042c:	0a80006f          	j	104d4 <read_keypad+0x274>
-   10430:	fef44703          	lbu	a4,-17(s0)
-   10434:	0b000793          	li	a5,176
-   10438:	00f71863          	bne	a4,a5,10448 <read_keypad+0x1e8>
-   1043c:	07300793          	li	a5,115
-   10440:	fef407a3          	sb	a5,-17(s0)
-   10444:	0900006f          	j	104d4 <read_keypad+0x274>
-   10448:	fef44703          	lbu	a4,-17(s0)
-   1044c:	07000793          	li	a5,112
-   10450:	08f71263          	bne	a4,a5,104d4 <read_keypad+0x274>
-   10454:	04e00793          	li	a5,78
-   10458:	fef407a3          	sb	a5,-17(s0)
-   1045c:	0780006f          	j	104d4 <read_keypad+0x274>
-   10460:	fee44783          	lbu	a5,-18(s0)
-   10464:	ff040713          	addi	a4,s0,-16
-   10468:	00f707b3          	add	a5,a4,a5
-   1046c:	ff87c703          	lbu	a4,-8(a5)
-   10470:	00700793          	li	a5,7
-   10474:	06f71063          	bne	a4,a5,104d4 <read_keypad+0x274>
-   10478:	fef44703          	lbu	a4,-17(s0)
-   1047c:	0e000793          	li	a5,224
-   10480:	00f71863          	bne	a4,a5,10490 <read_keypad+0x230>
-   10484:	00100793          	li	a5,1
-   10488:	fef407a3          	sb	a5,-17(s0)
-   1048c:	0480006f          	j	104d4 <read_keypad+0x274>
-   10490:	fef44703          	lbu	a4,-17(s0)
-   10494:	0d000793          	li	a5,208
-   10498:	00f71863          	bne	a4,a5,104a8 <read_keypad+0x248>
-   1049c:	07f00793          	li	a5,127
-   104a0:	fef407a3          	sb	a5,-17(s0)
-   104a4:	0300006f          	j	104d4 <read_keypad+0x274>
-   104a8:	fef44703          	lbu	a4,-17(s0)
-   104ac:	0b000793          	li	a5,176
-   104b0:	00f71863          	bne	a4,a5,104c0 <read_keypad+0x260>
-   104b4:	00100793          	li	a5,1
-   104b8:	fef407a3          	sb	a5,-17(s0)
-   104bc:	0180006f          	j	104d4 <read_keypad+0x274>
-   104c0:	fef44703          	lbu	a4,-17(s0)
-   104c4:	07000793          	li	a5,112
-   104c8:	00f71663          	bne	a4,a5,104d4 <read_keypad+0x274>
-   104cc:	07d00793          	li	a5,125
-   104d0:	fef407a3          	sb	a5,-17(s0)
-   104d4:	fef44783          	lbu	a5,-17(s0)
-   104d8:	00078513          	mv	a0,a5
-   104dc:	01c12403          	lw	s0,28(sp)
-   104e0:	02010113          	addi	sp,sp,32
-   104e4:	00008067          	ret
+   10288:	f0000793          	li	a5,-256
+   1028c:	fef42423          	sw	a5,-24(s0)
+   10290:	0400006f          	j	102d0 <read_keypad+0x70>
+   10294:	fee44783          	lbu	a5,-18(s0)
+   10298:	ff040713          	addi	a4,s0,-16
+   1029c:	00f707b3          	add	a5,a4,a5
+   102a0:	ff07c783          	lbu	a5,-16(a5)
+   102a4:	fe842703          	lw	a4,-24(s0)
+   102a8:	00ef7f33          	and	t5,t5,a4
+   102ac:	00ff6f33          	or	t5,t5,a5
+   102b0:	0f0f7793          	andi	a5,t5,240
+   102b4:	fef407a3          	sb	a5,-17(s0)
+   102b8:	fef44703          	lbu	a4,-17(s0)
+   102bc:	0f000793          	li	a5,240
+   102c0:	02f71463          	bne	a4,a5,102e8 <read_keypad+0x88>
+   102c4:	fee44783          	lbu	a5,-18(s0)
+   102c8:	00178793          	addi	a5,a5,1
+   102cc:	fef40723          	sb	a5,-18(s0)
+   102d0:	fee44783          	lbu	a5,-18(s0)
+   102d4:	ff040713          	addi	a4,s0,-16
+   102d8:	00f707b3          	add	a5,a4,a5
+   102dc:	ff07c783          	lbu	a5,-16(a5)
+   102e0:	fa079ae3          	bnez	a5,10294 <read_keypad+0x34>
+   102e4:	0080006f          	j	102ec <read_keypad+0x8c>
+   102e8:	00000013          	nop
+   102ec:	fee44783          	lbu	a5,-18(s0)
+   102f0:	ff040713          	addi	a4,s0,-16
+   102f4:	00f707b3          	add	a5,a4,a5
+   102f8:	ff07c783          	lbu	a5,-16(a5)
+   102fc:	00079663          	bnez	a5,10308 <read_keypad+0xa8>
+   10300:	0ff00793          	li	a5,255
+   10304:	1e40006f          	j	104e8 <read_keypad+0x288>
+   10308:	fee44783          	lbu	a5,-18(s0)
+   1030c:	ff040713          	addi	a4,s0,-16
+   10310:	00f707b3          	add	a5,a4,a5
+   10314:	ff07c703          	lbu	a4,-16(a5)
+   10318:	00e00793          	li	a5,14
+   1031c:	06f71263          	bne	a4,a5,10380 <read_keypad+0x120>
+   10320:	fef44703          	lbu	a4,-17(s0)
+   10324:	0e000793          	li	a5,224
+   10328:	00f71863          	bne	a4,a5,10338 <read_keypad+0xd8>
+   1032c:	03000793          	li	a5,48
+   10330:	fef407a3          	sb	a5,-17(s0)
+   10334:	1b00006f          	j	104e4 <read_keypad+0x284>
+   10338:	fef44703          	lbu	a4,-17(s0)
+   1033c:	0d000793          	li	a5,208
+   10340:	00f71863          	bne	a4,a5,10350 <read_keypad+0xf0>
+   10344:	06d00793          	li	a5,109
+   10348:	fef407a3          	sb	a5,-17(s0)
+   1034c:	1980006f          	j	104e4 <read_keypad+0x284>
+   10350:	fef44703          	lbu	a4,-17(s0)
+   10354:	0b000793          	li	a5,176
+   10358:	00f71863          	bne	a4,a5,10368 <read_keypad+0x108>
+   1035c:	07900793          	li	a5,121
+   10360:	fef407a3          	sb	a5,-17(s0)
+   10364:	1800006f          	j	104e4 <read_keypad+0x284>
+   10368:	fef44703          	lbu	a4,-17(s0)
+   1036c:	07000793          	li	a5,112
+   10370:	16f71a63          	bne	a4,a5,104e4 <read_keypad+0x284>
+   10374:	07700793          	li	a5,119
+   10378:	fef407a3          	sb	a5,-17(s0)
+   1037c:	1680006f          	j	104e4 <read_keypad+0x284>
+   10380:	fee44783          	lbu	a5,-18(s0)
+   10384:	ff040713          	addi	a4,s0,-16
+   10388:	00f707b3          	add	a5,a4,a5
+   1038c:	ff07c703          	lbu	a4,-16(a5)
+   10390:	00d00793          	li	a5,13
+   10394:	06f71263          	bne	a4,a5,103f8 <read_keypad+0x198>
+   10398:	fef44703          	lbu	a4,-17(s0)
+   1039c:	0e000793          	li	a5,224
+   103a0:	00f71863          	bne	a4,a5,103b0 <read_keypad+0x150>
+   103a4:	03300793          	li	a5,51
+   103a8:	fef407a3          	sb	a5,-17(s0)
+   103ac:	1380006f          	j	104e4 <read_keypad+0x284>
+   103b0:	fef44703          	lbu	a4,-17(s0)
+   103b4:	0d000793          	li	a5,208
+   103b8:	00f71863          	bne	a4,a5,103c8 <read_keypad+0x168>
+   103bc:	05b00793          	li	a5,91
+   103c0:	fef407a3          	sb	a5,-17(s0)
+   103c4:	1200006f          	j	104e4 <read_keypad+0x284>
+   103c8:	fef44703          	lbu	a4,-17(s0)
+   103cc:	0b000793          	li	a5,176
+   103d0:	00f71863          	bne	a4,a5,103e0 <read_keypad+0x180>
+   103d4:	05e00793          	li	a5,94
+   103d8:	fef407a3          	sb	a5,-17(s0)
+   103dc:	1080006f          	j	104e4 <read_keypad+0x284>
+   103e0:	fef44703          	lbu	a4,-17(s0)
+   103e4:	07000793          	li	a5,112
+   103e8:	0ef71e63          	bne	a4,a5,104e4 <read_keypad+0x284>
+   103ec:	01f00793          	li	a5,31
+   103f0:	fef407a3          	sb	a5,-17(s0)
+   103f4:	0f00006f          	j	104e4 <read_keypad+0x284>
+   103f8:	fee44783          	lbu	a5,-18(s0)
+   103fc:	ff040713          	addi	a4,s0,-16
+   10400:	00f707b3          	add	a5,a4,a5
+   10404:	ff07c703          	lbu	a4,-16(a5)
+   10408:	00b00793          	li	a5,11
+   1040c:	06f71263          	bne	a4,a5,10470 <read_keypad+0x210>
+   10410:	fef44703          	lbu	a4,-17(s0)
+   10414:	0e000793          	li	a5,224
+   10418:	00f71863          	bne	a4,a5,10428 <read_keypad+0x1c8>
+   1041c:	07000793          	li	a5,112
+   10420:	fef407a3          	sb	a5,-17(s0)
+   10424:	0c00006f          	j	104e4 <read_keypad+0x284>
+   10428:	fef44703          	lbu	a4,-17(s0)
+   1042c:	0d000793          	li	a5,208
+   10430:	00f71863          	bne	a4,a5,10440 <read_keypad+0x1e0>
+   10434:	07f00793          	li	a5,127
+   10438:	fef407a3          	sb	a5,-17(s0)
+   1043c:	0a80006f          	j	104e4 <read_keypad+0x284>
+   10440:	fef44703          	lbu	a4,-17(s0)
+   10444:	0b000793          	li	a5,176
+   10448:	00f71863          	bne	a4,a5,10458 <read_keypad+0x1f8>
+   1044c:	07300793          	li	a5,115
+   10450:	fef407a3          	sb	a5,-17(s0)
+   10454:	0900006f          	j	104e4 <read_keypad+0x284>
+   10458:	fef44703          	lbu	a4,-17(s0)
+   1045c:	07000793          	li	a5,112
+   10460:	08f71263          	bne	a4,a5,104e4 <read_keypad+0x284>
+   10464:	04e00793          	li	a5,78
+   10468:	fef407a3          	sb	a5,-17(s0)
+   1046c:	0780006f          	j	104e4 <read_keypad+0x284>
+   10470:	fee44783          	lbu	a5,-18(s0)
+   10474:	ff040713          	addi	a4,s0,-16
+   10478:	00f707b3          	add	a5,a4,a5
+   1047c:	ff07c703          	lbu	a4,-16(a5)
+   10480:	00700793          	li	a5,7
+   10484:	06f71063          	bne	a4,a5,104e4 <read_keypad+0x284>
+   10488:	fef44703          	lbu	a4,-17(s0)
+   1048c:	0e000793          	li	a5,224
+   10490:	00f71863          	bne	a4,a5,104a0 <read_keypad+0x240>
+   10494:	00100793          	li	a5,1
+   10498:	fef407a3          	sb	a5,-17(s0)
+   1049c:	0480006f          	j	104e4 <read_keypad+0x284>
+   104a0:	fef44703          	lbu	a4,-17(s0)
+   104a4:	0d000793          	li	a5,208
+   104a8:	00f71863          	bne	a4,a5,104b8 <read_keypad+0x258>
+   104ac:	07e00793          	li	a5,126
+   104b0:	fef407a3          	sb	a5,-17(s0)
+   104b4:	0300006f          	j	104e4 <read_keypad+0x284>
+   104b8:	fef44703          	lbu	a4,-17(s0)
+   104bc:	0b000793          	li	a5,176
+   104c0:	00f71863          	bne	a4,a5,104d0 <read_keypad+0x270>
+   104c4:	00100793          	li	a5,1
+   104c8:	fef407a3          	sb	a5,-17(s0)
+   104cc:	0180006f          	j	104e4 <read_keypad+0x284>
+   104d0:	fef44703          	lbu	a4,-17(s0)
+   104d4:	07000793          	li	a5,112
+   104d8:	00f71663          	bne	a4,a5,104e4 <read_keypad+0x284>
+   104dc:	03d00793          	li	a5,61
+   104e0:	fef407a3          	sb	a5,-17(s0)
+   104e4:	fef44783          	lbu	a5,-17(s0)
+   104e8:	00078513          	mv	a0,a5
+   104ec:	01c12403          	lw	s0,28(sp)
+   104f0:	02010113          	addi	sp,sp,32
+   104f4:	00008067          	ret
 
-000104e8 <isAlarmTime>:
-   104e8:	fe010113          	addi	sp,sp,-32
-   104ec:	00812e23          	sw	s0,28(sp)
-   104f0:	02010413          	addi	s0,sp,32
-   104f4:	fea42623          	sw	a0,-20(s0)
-   104f8:	feb42423          	sw	a1,-24(s0)
-   104fc:	fec42223          	sw	a2,-28(s0)
-   10500:	fed42023          	sw	a3,-32(s0)
-   10504:	fec42703          	lw	a4,-20(s0)
-   10508:	fe442783          	lw	a5,-28(s0)
-   1050c:	00f71c63          	bne	a4,a5,10524 <isAlarmTime+0x3c>
-   10510:	fe842703          	lw	a4,-24(s0)
-   10514:	fe042783          	lw	a5,-32(s0)
-   10518:	00f71663          	bne	a4,a5,10524 <isAlarmTime+0x3c>
-   1051c:	00100793          	li	a5,1
-   10520:	0080006f          	j	10528 <isAlarmTime+0x40>
-   10524:	00000793          	li	a5,0
-   10528:	00078513          	mv	a0,a5
-   1052c:	01c12403          	lw	s0,28(sp)
-   10530:	02010113          	addi	sp,sp,32
-   10534:	00008067          	ret
+000104f8 <isAlarmTime>:
+   104f8:	fe010113          	addi	sp,sp,-32
+   104fc:	00812e23          	sw	s0,28(sp)
+   10500:	02010413          	addi	s0,sp,32
+   10504:	fea42623          	sw	a0,-20(s0)
+   10508:	feb42423          	sw	a1,-24(s0)
+   1050c:	fec42223          	sw	a2,-28(s0)
+   10510:	fed42023          	sw	a3,-32(s0)
+   10514:	fec42703          	lw	a4,-20(s0)
+   10518:	fe442783          	lw	a5,-28(s0)
+   1051c:	00f71c63          	bne	a4,a5,10534 <isAlarmTime+0x3c>
+   10520:	fe842703          	lw	a4,-24(s0)
+   10524:	fe042783          	lw	a5,-32(s0)
+   10528:	00f71663          	bne	a4,a5,10534 <isAlarmTime+0x3c>
+   1052c:	00100793          	li	a5,1
+   10530:	0080006f          	j	10538 <isAlarmTime+0x40>
+   10534:	00000793          	li	a5,0
+   10538:	00078513          	mv	a0,a5
+   1053c:	01c12403          	lw	s0,28(sp)
+   10540:	02010113          	addi	sp,sp,32
+   10544:	00008067          	ret
+
 
 
 ```
@@ -591,27 +597,29 @@ Create a sample_assembly.txt file and dump the assembly code into this file.Now,
 ```
 
 ```
-Number of different instructions: 19
+Number of different instructions: 20
 List of unique instructions:
+and
+ret
+j
+or
+sb
+andi
+addi
+li
 beqz
+lw
+bnez
+lbu
 add
+bne
 mv
 sw
-lbu
-or
-jal
 lui
-addi
-bnez
-andi
-lw
-j
-sb
-slli
-ret
-li
-bne
 nop
+jal
+slli
+
 
 
 
