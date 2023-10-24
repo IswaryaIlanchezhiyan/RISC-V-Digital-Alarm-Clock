@@ -235,12 +235,25 @@ int isAlarmTime(int currentHours, int currentMinutes, int alarmHours, int alarmM
 
 
 ```
+# Compile the C Code
+
+```
+
+gcc clock.c
+./a.out
+
+```
+
+![Screenshot from 2023-10-24 22-50-14](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/9e3ebcbb-826c-4cd4-9b56-7b608fe33eb6)
+
+
+![Screenshot from 2023-10-24 22-50-22](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/442395f8-af91-451e-bfc5-f9a9f8f4914c)
+
 
 # Assembly Code
 
 ```
-gcc clock.c
-./a.out
+
 /home/iswarya/riscv_toolchain/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14/bin riscv64-unkown-elf-gcc -march=rv32i -mabi=ilp32 -ffreestanding -nostdlib -o ./out clock.c
 riscv64-unknown-elf-objdump -d -r out > sample_assembly.txt
 
