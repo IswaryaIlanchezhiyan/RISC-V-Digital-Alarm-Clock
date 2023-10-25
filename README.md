@@ -183,19 +183,6 @@ int main()
     int buzzer_reg = buzzer * 2;
     int j;
     
-   asm volatile(
-        "andi %0, x30, 0x01\n\t"
-        :"=r"(alarmHours)
-        :
-        :
-        );
-
-    asm volatile(
-        "andi %0, x30, 0x02\n\t"
-        :"=r"(alarmMinutes)
-        :
-        :
-        );
 
     for (j=0;j<100;j++)
     {
@@ -228,7 +215,7 @@ int main()
         	
             printf("ALARM! ALARM! ALARM!\a\n");
             int i;
-       	    for(i=0;i<1000000000;i++);
+       	    for(i=0;i<100;i++);
         	/*NULL STATEMENT*/;
            return i;
            
@@ -311,11 +298,15 @@ int isAlarmTime(int currentHours, int currentMinutes, int alarmHours, int alarmM
 
 
 
-```
+
+
+
 
 ```
 
-riscv64-unknown-elf-gcc -march=rv64i -mabi=lp64 -ffreestanding -o out spike_clock.c
+```
+
+riscv64-unknown-elf-gcc -march=rv64i -mabi=lp64 -ffreestanding -o out spike1.c
 spike pk out
 
 ```
