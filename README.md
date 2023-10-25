@@ -162,7 +162,7 @@ gcc onlyccode.c
 
 ```
 
-riscv64-unknown-elf-gcc -march=rv64i -mabi=lp64 -ffreestanding -o out spike1.c
+riscv64-unknown-elf-gcc -march=rv64i -mabi=lp64 -ffreestanding -o out spike_clock.c
 spike pk out
 
 ```
