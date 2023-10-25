@@ -40,14 +40,14 @@ int main()
    
 
     asm volatile(
-        "andi %0, x30, 1\n\t"
+        "andi %0, x30, 0x01\n\t"
         :"=r"(alarmHours)
         :
         :
         );
 
     asm volatile(
-        "andi %0, x30, 1\n\t"
+        "andi %0, x30, 0x02\n\t"
         :"=r"(alarmMinutes)
         :
         :
