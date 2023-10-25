@@ -149,7 +149,7 @@ void displayAlarm(int hours, int minutes)
 
 ```
 
-gcc clock.c
+gcc onlyccode.c
 ./a.out
 
 ```
