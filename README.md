@@ -328,12 +328,13 @@ spike pk out
 
 ```
 
-/home/iswarya/riscv_toolchain/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14/bin riscv64-unkown-elf-gcc -march=rv32i -mabi=ilp32 -ffreestanding -nostdlib -o ./out assemblyccode.c
-riscv64-unknown-elf-objdump -d -r out > sample_assembly.txt
+/home/iswarya/riscv_toolchain/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14/bin riscv64-unkown-elf-gcc -march=rv32i -mabi=ilp32 -ffreestanding -nostdlib -o ./out spike_clock.c
+riscv64-unknown-elf-objdump -d -r out > clock_assembly.txt
 
 ```
 
 ```
+
 
 
 
@@ -501,7 +502,6 @@ Disassembly of section .text:
    102a8:	01c12403          	lw	s0,28(sp)
    102ac:	02010113          	addi	sp,sp,32
    102b0:	00008067          	ret
-
 
 
 ```
