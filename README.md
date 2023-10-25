@@ -364,31 +364,25 @@ Create a sample_assembly.txt file and dump the assembly code into this file.Now,
 ```
 
 ```
-Number of different instructions: 20
+Number of different instructions: 17
 List of unique instructions:
-and
+lw
+jal
+or
+lui
+bge
+andi
+beqz
+bne
+nop
+li
+sw
+addi
+slli
+bnez
+mv
 ret
 j
-or
-sb
-andi
-addi
-li
-beqz
-lw
-bnez
-lbu
-add
-bne
-mv
-sw
-lui
-nop
-jal
-slli
-
-
-
 
 
 ```
