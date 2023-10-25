@@ -23,27 +23,19 @@ Digital clocks are also known as LED clocks or liquid crystal displays (LCDs).
 
 ```
 
+
 void displayTime(int hours, int minutes, int seconds);
 void displayAlarm(int hours, int minutes);
-unsigned char read_keypad(void);
 int isAlarmTime(int currentHours, int currentMinutes, int alarmHours, int alarmMinutes);
 
 
 int main()
 {
     int currentHours = 0, currentMinutes = 0, currentSeconds = 0;
-    int alarmHours , alarmMinutes ;
+    int alarmHours = 0, alarmMinutes = 1 ;
     int alarmOffFlag = 0;
     int buzzer;
     int buzzer_reg = buzzer * 2;
-
-    int h1 = read_keypad() - '0';
-    int h2 = read_keypad() - '0';
-    int m1 = read_keypad() - '0';
-    int m2 = read_keypad() - '0';
-
-    alarmHours = h1*10 + h2;
-    alarmMinutes = m1*10 + m2;
 
     asm(
         "andi %0, x30, 1\n\t"
@@ -144,94 +136,7 @@ void displayAlarm(int hours, int minutes)
         );
 }
 
-unsigned char read_keypad(void)
-{
-    unsigned char keypad;
-    unsigned char row[5] = {14, 13, 11, 7, 0};
-    unsigned char i = 0;
-    // for(unsigned char i=14;i<9;i=i*2)
-    while (row[i] > 0)
-    {
-        asm(
-            "or x30, x30, %0\n\t"
-            :
-            :"r"(row[i])
-            :"x30"
-            );
 
-        asm(
-            "andi %0, x30, 240\n\t"
-            :"=r"(keypad)
-            :
-            :
-            );
-        if (keypad != 240)
-        {
-            // unsigned char pressed=1;
-            break;
-        }
-        i++;
-    }
-    if (row[i] == 0) // no button pressed
-    {
-        return -1;
-    }
-    else
-    {
-        if (row[i] == 14) // row=1
-        {
-            if (keypad == 224)
-                keypad = 96; // 1
-            else if (keypad == 208)
-                keypad = 109; // 2
-            else if (keypad == 176)
-                keypad = 121; // 3
-            else if (keypad == 112)
-                keypad = 119; // A
-        }
-        else if (row[i] == 13) // row=2
-        {
-            if (keypad == 224)
-                keypad = 51; // 4
-            else if (keypad == 208)
-                keypad = 91; // 5
-            else if (keypad == 176)
-                keypad = 94; // 6
-            else if (keypad == 112)
-                keypad = 15; // B
-        }
-        else if (row[i] == 11) // row=3
-        {
-            if (keypad == 224)
-                keypad = 112; // 7
-            else if (keypad == 208)
-                keypad = 127; // 8
-            else if (keypad == 176)
-                keypad = 115; // 9
-            else if (keypad == 112)
-                keypad = 78; // C
-        }
-        else if (row[i] == 7) // row=4
-        {
-            if (keypad == 224)
-                keypad = 1; //-
-            else if (keypad == 208)
-                keypad = 127; // 0
-            else if (keypad == 176)
-                keypad = 1; //-
-            else if (keypad == 112)
-                keypad = 125; // D
-        }
-    }
-
-    return keypad;
-}
-
-// Function to check if the current time matches the alarm time
-int isAlarmTime(int currentHours, int currentMinutes, int alarmHours, int alarmMinutes)
-{
-    return (currentHours == alarmHours && currentMinutes == alarmMinutes);
-}
 
 
 
