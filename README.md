@@ -249,6 +249,17 @@ gcc clock.c
 
 ![Screenshot from 2023-10-25 13-43-58](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/a7152c43-1e03-4f32-a638-eb901b3f7b01)
 
+# Spike Simulation
+
+```
+
+riscv64-unknown-elf-gcc -march=rv64i -mabi=lp64 -ffreestanding -o out spike1.c
+spike pk out
+
+```
+![Screenshot from 2023-10-25 13-55-04](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/b23bdcdf-941b-4f08-ab31-e0be3304934d)
+
+![Screenshot from 2023-10-25 13-55-13](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/e858cc25-4323-4336-a5e9-86b10e7e7e35)
 
 
 # Assembly Code
