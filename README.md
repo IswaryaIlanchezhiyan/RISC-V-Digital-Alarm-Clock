@@ -213,8 +213,8 @@ int main()
     int j;
     
 
-    //for (j=0;j<100;j++)
-    while (1)
+    for (j=0;j<100;j++)
+    //while (1)
     {
         // Get the current time (in a real-world scenario, you'd use a library)
         // For simplicity, we increment the time every second in this example
