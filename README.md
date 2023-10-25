@@ -23,147 +23,6 @@ Digital clocks are also known as LED clocks or liquid crystal displays (LCDs).
 
 ```
 
-
-
-void displayTime(int hours, int minutes, int seconds);
-void displayAlarm(int hours, int minutes);
-int isAlarmTime(int currentHours, int currentMinutes, int alarmHours, int alarmMinutes);
-
-
-int main()
-{
-    int currentHours = 0, currentMinutes = 0, currentSeconds = 0;
-    int alarmHours = 0, alarmMinutes = 1 ;
-    int alarmOffFlag = 0;
-    int buzzer;
-    int buzzer_reg = buzzer * 2;
-
-   
-
-    asm volatile(
-        "andi %0, x30, 0x01\n\t"
-        :"=r"(alarmHours)
-        :
-        :
-        );
-
-    asm volatile(
-        "andi %0, x30, 0x02\n\t"
-        :"=r"(alarmMinutes)
-        :
-        :
-        );
-
-    while (1)
-    {
-        // Get the current time (in a real-world scenario, you'd use a library)
-        // For simplicity, we increment the time every second in this example
-        currentSeconds++;
-        if (currentSeconds == 60)
-        {
-            currentSeconds = 0;
-            currentMinutes++;
-            if (currentMinutes == 60)
-            {
-                currentMinutes = 0;
-                currentHours++;
-                if (currentHours == 24)
-                {
-                    currentHours = 0;
-                }
-            }
-        }
-
-        // Display the current time
-        displayTime(currentHours, currentMinutes, currentSeconds);
-
-        // Check if it's alarm time
-        if (isAlarmTime(currentHours, currentMinutes, alarmHours, alarmMinutes) && alarmOffFlag == 0)
-        {
-            //printf("ALARM! ALARM! ALARM!\a\n");
-            // ------------------------------- add buzzer code here -----------------------------
-            buzzer = 1;
-            buzzer_reg = buzzer * 2;
-            asm volatile(
-            "or x30, x30, %0\n\t"
-	    :
-            :"r"(buzzer_reg)
-            :"x30"
-            );
-        }
-
-        if (!isAlarmTime(currentHours, currentMinutes, alarmHours, alarmMinutes))
-        {
-            alarmOffFlag = 0;
-        }
-
-        // Display the alarm time
-        displayAlarm(alarmHours, alarmMinutes);
-
-        // Sleep for one second (in a real-world scenario, you'd use a timer interrupt)
-        // sleep(1);
-    }
-
-    return 0;
-}
-
-
-
-
-
-// Function to display the current time
-void displayTime(int hours, int minutes, int seconds)
-{
-    // printf("Current Time: %02d:%02d:%02d\n", hours, minutes, seconds);
-    // -------------------------------add print asm over here -----------------------------------
-    asm volatile(
-        "or x30, x30, %0\n\t"
-        "or x30, x30, %1\n\t"
-        "or x30, x30, %2\n\t"
-        :
-        :"r"(hours), "r"(minutes), "r"(seconds)
-        :"x30"
-        );
-}
-
-// Function to display the alarm time
-void displayAlarm(int hours, int minutes)
-{
-    // printf("Alarm Time: %02d:%02d\n", hours, minutes);
-    asm volatile(
-        "or x30, x30, %0\n\t"
-        "or x30, x30, %1\n\t"
-        :
-        :"r"(hours), "r"(minutes)
-        :"x30"
-        );
-}
-
-
-
-
-
-
-```
-# Compile the C Code
-
-```
-
-gcc onlyccode.c
-./a.out
-
-```
-
-![Screenshot from 2023-10-25 13-43-44](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/b2c5deaa-04b4-4697-90e1-9198e0aa17dd)
-
-![Screenshot from 2023-10-25 13-43-58](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/a7152c43-1e03-4f32-a638-eb901b3f7b01)
-
-# Spike Simulation
-
-Modified C code for Spike Simulation
-
-```
-
 #include <stdio.h>
 
 
@@ -183,8 +42,22 @@ int main()
     int buzzer_reg = buzzer * 2;
     int j;
     
+   asm volatile(
+        "andi %0, x30, 0x01\n\t"
+        :"=r"(alarmHours)
+        :
+        :
+        );
 
-    for (j=0;j<100;j++)
+    asm volatile(
+        "andi %0, x30, 0x02\n\t"
+        :"=r"(alarmMinutes)
+        :
+        :
+        );
+
+    //for (j=0;j<100;j++)
+    while(1)
     {
         // Get the current time (in a real-world scenario, you'd use a library)
         // For simplicity, we increment the time every second in this example
@@ -213,7 +86,7 @@ int main()
         if (isAlarmTime(currentHours, currentMinutes, alarmHours, alarmMinutes) && alarmOffFlag == 0)
         {
         	
-            printf("ALARM! ALARM! ALARM!\a\n");
+            //printf("ALARM! ALARM! ALARM!\a\n");
             int i;
        	    for(i=0;i<100;i++);
         	/*NULL STATEMENT*/;
@@ -244,7 +117,7 @@ int main()
         // Sleep for one second (in a real-world scenario, you'd use a timer interrupt)
         // sleep(1);
         int i;
-        for(i=0;i<10000000;i++);
+        for(i=0;i<100;i++);
         	/*NULL STATEMENT*/;
         
     }
@@ -256,7 +129,7 @@ int main()
 void displayTime(int hours, int minutes, int seconds)
 {
      int mask = 0xFFFFFFFF;
-     printf("Current Time: %02d:%02d:%02d\n", hours, minutes, seconds);
+     //printf("Current Time: %02d:%02d:%02d\n", hours, minutes, seconds);
     // -------------------------------add print asm over here -----------------------------------
     asm volatile(
         "or x30, x30, %0\n\t"
@@ -274,7 +147,7 @@ void displayTime(int hours, int minutes, int seconds)
 void displayAlarm(int hours, int minutes)
 {
     int mask = 0xFFFFFFFF;	
-    printf("Alarm Time: %02d:%02d\n", hours, minutes);
+    //printf("Alarm Time: %02d:%02d\n", hours, minutes);
     asm volatile(
         "or x30, x30, %0\n\t"
         "or x30, x30, %1\n\t"
@@ -298,6 +171,28 @@ int isAlarmTime(int currentHours, int currentMinutes, int alarmHours, int alarmM
 
 
 
+
+
+
+```
+# Compile the C Code
+
+```
+
+gcc onlyccode.c
+./a.out
+
+```
+
+![Screenshot from 2023-10-25 13-43-44](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/b2c5deaa-04b4-4697-90e1-9198e0aa17dd)
+
+![Screenshot from 2023-10-25 13-43-58](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/a7152c43-1e03-4f32-a638-eb901b3f7b01)
+
+# Spike Simulation
+
+Modified C code for Spike Simulation
+
+```
 
 
 
