@@ -245,10 +245,9 @@ gcc clock.c
 
 ```
 
-![Screenshot from 2023-10-24 22-50-14](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/9e3ebcbb-826c-4cd4-9b56-7b608fe33eb6)
+![Screenshot from 2023-10-25 13-43-58](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/6d6b95e6-469e-43fe-ac37-07c8e296e2fe)
 
-
-![Screenshot from 2023-10-24 22-50-22](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/442395f8-af91-451e-bfc5-f9a9f8f4914c)
+![Screenshot from 2023-10-25 13-43-44](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/2d7d3f0d-6f8b-4d29-bc52-162d578a61ef)
 
 
 # Assembly Code
