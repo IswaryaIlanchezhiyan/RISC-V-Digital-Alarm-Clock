@@ -37,14 +37,16 @@ int main()
     int buzzer;
     int buzzer_reg = buzzer * 2;
 
-    asm(
+   
+
+    asm volatile(
         "andi %0, x30, 1\n\t"
         :"=r"(alarmHours)
         :
         :
         );
 
-    asm(
+    asm volatile(
         "andi %0, x30, 1\n\t"
         :"=r"(alarmMinutes)
         :
@@ -81,7 +83,7 @@ int main()
             // ------------------------------- add buzzer code here -----------------------------
             buzzer = 1;
             buzzer_reg = buzzer * 2;
-            asm(
+            asm volatile(
             "or x30, x30, %0\n\t"
 	    :
             :"r"(buzzer_reg)
@@ -113,7 +115,7 @@ void displayTime(int hours, int minutes, int seconds)
 {
     // printf("Current Time: %02d:%02d:%02d\n", hours, minutes, seconds);
     // -------------------------------add print asm over here -----------------------------------
-    asm(
+    asm volatile(
         "or x30, x30, %0\n\t"
         "or x30, x30, %1\n\t"
         "or x30, x30, %2\n\t"
@@ -127,7 +129,7 @@ void displayTime(int hours, int minutes, int seconds)
 void displayAlarm(int hours, int minutes)
 {
     // printf("Alarm Time: %02d:%02d\n", hours, minutes);
-    asm (
+    asm volatile(
         "or x30, x30, %0\n\t"
         "or x30, x30, %1\n\t"
         :
