@@ -1,0 +1,20 @@
+Number of different instructions: 17
+List of unique instructions:
+jal
+or
+nop
+ret
+slli
+j
+beqz
+andi
+sw
+lui
+lw
+addi
+bne
+mv
+li
+bge
+bnez
+
