@@ -568,11 +568,12 @@ iverilog -o test testbench.v processor.v
 
 # Instructions Verification
 
-1.  10054:	fc010113          	addi	sp,sp,-64
+First Instruction is verified:
+
+# 10054:	fc010113          	addi	sp,sp,-64
 
 ![Screenshot from 2023-10-27 22-23-31](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/393f231a-90a2-4774-b515-147310656053)
 
-2.
 
 
 
