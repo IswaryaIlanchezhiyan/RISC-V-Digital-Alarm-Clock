@@ -23,6 +23,7 @@ Digital clocks are also known as LED clocks or liquid crystal displays (LCDs).
 
 ```
 
+
 #include <stdio.h>
 
 
@@ -88,7 +89,7 @@ int main()
         	
             //printf("ALARM! ALARM! ALARM!\a\n");
             int i;
-       	    for(i=0;i<100;i++);
+       	    for(i=0;i<1000000000;i++);
         	/*NULL STATEMENT*/;
            return i;
            
@@ -96,9 +97,10 @@ int main()
             // ------------------------------- add buzzer code here -----------------------------
             buzzer = 1;
             buzzer_reg = buzzer * 2;
-            int mask = 0xFFFFFFFF;
+            int mask = 0xFFFFFFF3;
             asm volatile(
             "or x30, x30, %0\n\t"
+            "or x30, x30, %1\n\t"
 	    :
             :"r"(buzzer_reg), "r"(mask)
             :"x30"
@@ -117,7 +119,7 @@ int main()
         // Sleep for one second (in a real-world scenario, you'd use a timer interrupt)
         // sleep(1);
         int i;
-        for(i=0;i<100;i++);
+        for(i=0;i<1000000000;i++);
         	/*NULL STATEMENT*/;
         
     }
@@ -128,13 +130,14 @@ int main()
 // Function to display the current time
 void displayTime(int hours, int minutes, int seconds)
 {
-     int mask = 0xFFFFFFFF;
+     int mask = 0xFFFFFFF3;
      //printf("Current Time: %02d:%02d:%02d\n", hours, minutes, seconds);
     // -------------------------------add print asm over here -----------------------------------
     asm volatile(
         "or x30, x30, %0\n\t"
         "or x30, x30, %1\n\t"
         "or x30, x30, %2\n\t"
+        "or x30, x30, %3\n\t"
         :
         :"r"(hours), "r"(minutes), "r"(seconds), "r"(mask)
         :"x30"
@@ -146,11 +149,12 @@ void displayTime(int hours, int minutes, int seconds)
 // Function to display the alarm time
 void displayAlarm(int hours, int minutes)
 {
-    int mask = 0xFFFFFFFF;	
+    int mask = 0xFFFFFFF3;	
     //printf("Alarm Time: %02d:%02d\n", hours, minutes);
     asm volatile(
         "or x30, x30, %0\n\t"
         "or x30, x30, %1\n\t"
+        "or x30, x30, %2\n\t"
         :
         :"r"(hours), "r"(minutes), "r"(mask)
         :"x30"
@@ -167,11 +171,6 @@ int isAlarmTime(int currentHours, int currentMinutes, int alarmHours, int alarmM
    
 
 }
-
-
-
-
-
 
 
 ```
@@ -199,9 +198,6 @@ riscv64-unknown-elf-objdump -d -r out > clock_assembly.txt
 ```
 
 ```
-
-
-
 
 
 out:     file format elf32-littleriscv
@@ -252,112 +248,120 @@ Disassembly of section .text:
    100f0:	fe442603          	lw	a2,-28(s0)
    100f4:	fe842583          	lw	a1,-24(s0)
    100f8:	fec42503          	lw	a0,-20(s0)
-   100fc:	0b4000ef          	jal	ra,101b0 <displayTime>
+   100fc:	0bc000ef          	jal	ra,101b8 <displayTime>
    10100:	fd042683          	lw	a3,-48(s0)
    10104:	fd442603          	lw	a2,-44(s0)
    10108:	fe842583          	lw	a1,-24(s0)
    1010c:	fec42503          	lw	a0,-20(s0)
-   10110:	12c000ef          	jal	ra,1023c <isAlarmTime>
+   10110:	13c000ef          	jal	ra,1024c <isAlarmTime>
    10114:	00050793          	mv	a5,a0
-   10118:	02078a63          	beqz	a5,1014c <main+0xf8>
+   10118:	02078c63          	beqz	a5,10150 <main+0xfc>
    1011c:	fe042783          	lw	a5,-32(s0)
-   10120:	02079663          	bnez	a5,1014c <main+0xf8>
+   10120:	02079863          	bnez	a5,10150 <main+0xfc>
    10124:	fc042e23          	sw	zero,-36(s0)
    10128:	0100006f          	j	10138 <main+0xe4>
    1012c:	fdc42783          	lw	a5,-36(s0)
    10130:	00178793          	addi	a5,a5,1
    10134:	fcf42e23          	sw	a5,-36(s0)
    10138:	fdc42703          	lw	a4,-36(s0)
-   1013c:	06300793          	li	a5,99
-   10140:	fee7d6e3          	bge	a5,a4,1012c <main+0xd8>
-   10144:	fdc42783          	lw	a5,-36(s0)
-   10148:	0540006f          	j	1019c <main+0x148>
-   1014c:	fd042683          	lw	a3,-48(s0)
-   10150:	fd442603          	lw	a2,-44(s0)
-   10154:	fe842583          	lw	a1,-24(s0)
-   10158:	fec42503          	lw	a0,-20(s0)
-   1015c:	0e0000ef          	jal	ra,1023c <isAlarmTime>
-   10160:	00050793          	mv	a5,a0
-   10164:	00079463          	bnez	a5,1016c <main+0x118>
-   10168:	fe042023          	sw	zero,-32(s0)
-   1016c:	fd042583          	lw	a1,-48(s0)
-   10170:	fd442503          	lw	a0,-44(s0)
-   10174:	088000ef          	jal	ra,101fc <displayAlarm>
-   10178:	fc042c23          	sw	zero,-40(s0)
-   1017c:	0100006f          	j	1018c <main+0x138>
-   10180:	fd842783          	lw	a5,-40(s0)
-   10184:	00178793          	addi	a5,a5,1
-   10188:	fcf42c23          	sw	a5,-40(s0)
-   1018c:	fd842703          	lw	a4,-40(s0)
-   10190:	06300793          	li	a5,99
-   10194:	fee7d6e3          	bge	a5,a4,10180 <main+0x12c>
-   10198:	f05ff06f          	j	1009c <main+0x48>
-   1019c:	00078513          	mv	a0,a5
-   101a0:	03c12083          	lw	ra,60(sp)
-   101a4:	03812403          	lw	s0,56(sp)
-   101a8:	04010113          	addi	sp,sp,64
-   101ac:	00008067          	ret
+   1013c:	3b9ad7b7          	lui	a5,0x3b9ad
+   10140:	9ff78793          	addi	a5,a5,-1537 # 3b9ac9ff <__global_pointer$+0x3b99af63>
+   10144:	fee7d4e3          	bge	a5,a4,1012c <main+0xd8>
+   10148:	fdc42783          	lw	a5,-36(s0)
+   1014c:	0580006f          	j	101a4 <main+0x150>
+   10150:	fd042683          	lw	a3,-48(s0)
+   10154:	fd442603          	lw	a2,-44(s0)
+   10158:	fe842583          	lw	a1,-24(s0)
+   1015c:	fec42503          	lw	a0,-20(s0)
+   10160:	0ec000ef          	jal	ra,1024c <isAlarmTime>
+   10164:	00050793          	mv	a5,a0
+   10168:	00079463          	bnez	a5,10170 <main+0x11c>
+   1016c:	fe042023          	sw	zero,-32(s0)
+   10170:	fd042583          	lw	a1,-48(s0)
+   10174:	fd442503          	lw	a0,-44(s0)
+   10178:	090000ef          	jal	ra,10208 <displayAlarm>
+   1017c:	fc042c23          	sw	zero,-40(s0)
+   10180:	0100006f          	j	10190 <main+0x13c>
+   10184:	fd842783          	lw	a5,-40(s0)
+   10188:	00178793          	addi	a5,a5,1
+   1018c:	fcf42c23          	sw	a5,-40(s0)
+   10190:	fd842703          	lw	a4,-40(s0)
+   10194:	3b9ad7b7          	lui	a5,0x3b9ad
+   10198:	9ff78793          	addi	a5,a5,-1537 # 3b9ac9ff <__global_pointer$+0x3b99af63>
+   1019c:	fee7d4e3          	bge	a5,a4,10184 <main+0x130>
+   101a0:	efdff06f          	j	1009c <main+0x48>
+   101a4:	00078513          	mv	a0,a5
+   101a8:	03c12083          	lw	ra,60(sp)
+   101ac:	03812403          	lw	s0,56(sp)
+   101b0:	04010113          	addi	sp,sp,64
+   101b4:	00008067          	ret
 
-000101b0 <displayTime>:
-   101b0:	fd010113          	addi	sp,sp,-48
-   101b4:	02812623          	sw	s0,44(sp)
-   101b8:	03010413          	addi	s0,sp,48
-   101bc:	fca42e23          	sw	a0,-36(s0)
-   101c0:	fcb42c23          	sw	a1,-40(s0)
-   101c4:	fcc42a23          	sw	a2,-44(s0)
-   101c8:	fff00793          	li	a5,-1
-   101cc:	fef42623          	sw	a5,-20(s0)
-   101d0:	fdc42783          	lw	a5,-36(s0)
-   101d4:	fd842703          	lw	a4,-40(s0)
-   101d8:	fd442683          	lw	a3,-44(s0)
-   101dc:	fec42603          	lw	a2,-20(s0)
-   101e0:	00ff6f33          	or	t5,t5,a5
-   101e4:	00ef6f33          	or	t5,t5,a4
-   101e8:	00df6f33          	or	t5,t5,a3
-   101ec:	00000013          	nop
-   101f0:	02c12403          	lw	s0,44(sp)
-   101f4:	03010113          	addi	sp,sp,48
-   101f8:	00008067          	ret
+000101b8 <displayTime>:
+   101b8:	fd010113          	addi	sp,sp,-48
+   101bc:	02812623          	sw	s0,44(sp)
+   101c0:	03010413          	addi	s0,sp,48
+   101c4:	fca42e23          	sw	a0,-36(s0)
+   101c8:	fcb42c23          	sw	a1,-40(s0)
+   101cc:	fcc42a23          	sw	a2,-44(s0)
+   101d0:	ff300793          	li	a5,-13
+   101d4:	fef42623          	sw	a5,-20(s0)
+   101d8:	fdc42783          	lw	a5,-36(s0)
+   101dc:	fd842703          	lw	a4,-40(s0)
+   101e0:	fd442683          	lw	a3,-44(s0)
+   101e4:	fec42603          	lw	a2,-20(s0)
+   101e8:	00ff6f33          	or	t5,t5,a5
+   101ec:	00ef6f33          	or	t5,t5,a4
+   101f0:	00df6f33          	or	t5,t5,a3
+   101f4:	00cf6f33          	or	t5,t5,a2
+   101f8:	00000013          	nop
+   101fc:	02c12403          	lw	s0,44(sp)
+   10200:	03010113          	addi	sp,sp,48
+   10204:	00008067          	ret
 
-000101fc <displayAlarm>:
-   101fc:	fd010113          	addi	sp,sp,-48
-   10200:	02812623          	sw	s0,44(sp)
-   10204:	03010413          	addi	s0,sp,48
-   10208:	fca42e23          	sw	a0,-36(s0)
-   1020c:	fcb42c23          	sw	a1,-40(s0)
-   10210:	fff00793          	li	a5,-1
-   10214:	fef42623          	sw	a5,-20(s0)
-   10218:	fdc42783          	lw	a5,-36(s0)
-   1021c:	fd842703          	lw	a4,-40(s0)
-   10220:	fec42683          	lw	a3,-20(s0)
-   10224:	00ff6f33          	or	t5,t5,a5
-   10228:	00ef6f33          	or	t5,t5,a4
-   1022c:	00000013          	nop
-   10230:	02c12403          	lw	s0,44(sp)
-   10234:	03010113          	addi	sp,sp,48
-   10238:	00008067          	ret
+00010208 <displayAlarm>:
+   10208:	fd010113          	addi	sp,sp,-48
+   1020c:	02812623          	sw	s0,44(sp)
+   10210:	03010413          	addi	s0,sp,48
+   10214:	fca42e23          	sw	a0,-36(s0)
+   10218:	fcb42c23          	sw	a1,-40(s0)
+   1021c:	ff300793          	li	a5,-13
+   10220:	fef42623          	sw	a5,-20(s0)
+   10224:	fdc42783          	lw	a5,-36(s0)
+   10228:	fd842703          	lw	a4,-40(s0)
+   1022c:	fec42683          	lw	a3,-20(s0)
+   10230:	00ff6f33          	or	t5,t5,a5
+   10234:	00ef6f33          	or	t5,t5,a4
+   10238:	00df6f33          	or	t5,t5,a3
+   1023c:	00000013          	nop
+   10240:	02c12403          	lw	s0,44(sp)
+   10244:	03010113          	addi	sp,sp,48
+   10248:	00008067          	ret
 
-0001023c <isAlarmTime>:
-   1023c:	fe010113          	addi	sp,sp,-32
-   10240:	00812e23          	sw	s0,28(sp)
-   10244:	02010413          	addi	s0,sp,32
-   10248:	fea42623          	sw	a0,-20(s0)
-   1024c:	feb42423          	sw	a1,-24(s0)
-   10250:	fec42223          	sw	a2,-28(s0)
-   10254:	fed42023          	sw	a3,-32(s0)
-   10258:	fec42703          	lw	a4,-20(s0)
-   1025c:	fe442783          	lw	a5,-28(s0)
-   10260:	00f71c63          	bne	a4,a5,10278 <isAlarmTime+0x3c>
-   10264:	fe842703          	lw	a4,-24(s0)
-   10268:	fe042783          	lw	a5,-32(s0)
-   1026c:	00f71663          	bne	a4,a5,10278 <isAlarmTime+0x3c>
-   10270:	00100793          	li	a5,1
-   10274:	0080006f          	j	1027c <isAlarmTime+0x40>
-   10278:	00000793          	li	a5,0
-   1027c:	00078513          	mv	a0,a5
-   10280:	01c12403          	lw	s0,28(sp)
-   10284:	02010113          	addi	sp,sp,32
-   10288:	00008067          	ret
+0001024c <isAlarmTime>:
+   1024c:	fe010113          	addi	sp,sp,-32
+   10250:	00812e23          	sw	s0,28(sp)
+   10254:	02010413          	addi	s0,sp,32
+   10258:	fea42623          	sw	a0,-20(s0)
+   1025c:	feb42423          	sw	a1,-24(s0)
+   10260:	fec42223          	sw	a2,-28(s0)
+   10264:	fed42023          	sw	a3,-32(s0)
+   10268:	fec42703          	lw	a4,-20(s0)
+   1026c:	fe442783          	lw	a5,-28(s0)
+   10270:	00f71c63          	bne	a4,a5,10288 <isAlarmTime+0x3c>
+   10274:	fe842703          	lw	a4,-24(s0)
+   10278:	fe042783          	lw	a5,-32(s0)
+   1027c:	00f71663          	bne	a4,a5,10288 <isAlarmTime+0x3c>
+   10280:	00100793          	li	a5,1
+   10284:	0080006f          	j	1028c <isAlarmTime+0x40>
+   10288:	00000793          	li	a5,0
+   1028c:	00078513          	mv	a0,a5
+   10290:	01c12403          	lw	s0,28(sp)
+   10294:	02010113          	addi	sp,sp,32
+   10298:	00008067          	ret
+
+
+
+
 
 ```
 
@@ -372,25 +376,25 @@ Create a sample_assembly.txt file and dump the assembly code into this file.Now,
 ```
 
 ```
-Number of different instructions: 16
+Number of different instructions: 17
 List of unique instructions:
-andi
-bnez
-ret
-j
-addi
-bge
-bne
-jal
 mv
+addi
 or
-sw
+lui
 beqz
-li
-lw
+jal
+bne
+ret
 nop
+andi
+lw
+sw
+bnez
+bge
 slli
-
+li
+j
 
 
 ```
@@ -400,6 +404,7 @@ slli
 Modified C code for Spike Simulation
 
 ```
+
 #include <stdio.h>
 
 
@@ -460,9 +465,10 @@ int main()
             // ------------------------------- add buzzer code here -----------------------------
             buzzer = 1;
             buzzer_reg = buzzer * 2;
-            int mask = 0xFFFFFFFF;
+            int mask = 0xFFFFFFF3;
             asm volatile(
             "or x30, x30, %0\n\t"
+            "or x30, x30, %1\n\t"
 	    :
             :"r"(buzzer_reg), "r"(mask)
             :"x30"
@@ -492,13 +498,14 @@ int main()
 // Function to display the current time
 void displayTime(int hours, int minutes, int seconds)
 {
-     int mask = 0xFFFFFFFF;
+     int mask = 0xFFFFFFF3;
      printf("Current Time: %02d:%02d:%02d\n", hours, minutes, seconds);
     // -------------------------------add print asm over here -----------------------------------
     asm volatile(
         "or x30, x30, %0\n\t"
         "or x30, x30, %1\n\t"
         "or x30, x30, %2\n\t"
+        "or x30, x30, %3\n\t"
         :
         :"r"(hours), "r"(minutes), "r"(seconds), "r"(mask)
         :"x30"
@@ -510,11 +517,12 @@ void displayTime(int hours, int minutes, int seconds)
 // Function to display the alarm time
 void displayAlarm(int hours, int minutes)
 {
-    int mask = 0xFFFFFFFF;	
+    int mask = 0xFFFFFFF3;	
     printf("Alarm Time: %02d:%02d\n", hours, minutes);
     asm volatile(
         "or x30, x30, %0\n\t"
         "or x30, x30, %1\n\t"
+        "or x30, x30, %2\n\t"
         :
         :"r"(hours), "r"(minutes), "r"(mask)
         :"x30"
@@ -533,11 +541,6 @@ int isAlarmTime(int currentHours, int currentMinutes, int alarmHours, int alarmM
 }
 
 
-
-
-
-
-
 ```
 
 ```
@@ -549,6 +552,12 @@ spike pk out
 ![Screenshot from 2023-10-25 13-55-04](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/b23bdcdf-941b-4f08-ab31-e0be3304934d)
 
 ![Screenshot from 2023-10-25 13-55-13](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/e858cc25-4323-4336-a5e9-86b10e7e7e35)
+
+# Functional Simulation
+
+![Screenshot from 2023-10-27 22-00-07](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/476371b4-a3ec-4bc2-89df-6416c630ae21)
+
+![Screenshot from 2023-10-27 22-05-31](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/914d3f81-c8c6-46cf-828e-42c4c4f440e2)
 
 
 
