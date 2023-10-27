@@ -555,9 +555,20 @@ spike pk out
 
 # Functional Simulation
 
+Functional Simulation is done using GTKWave and the waveform is shown below.Commands used for generating waveform.vcd :
+
+```
+
+iverilog -o test testbench.v processor.v
+./test
+
+```
+
 ![Screenshot from 2023-10-27 22-00-07](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/476371b4-a3ec-4bc2-89df-6416c630ae21)
 
-![Screenshot from 2023-10-27 22-05-31](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/914d3f81-c8c6-46cf-828e-42c4c4f440e2)
+# Instructions Verification
+
+
 
 
 
