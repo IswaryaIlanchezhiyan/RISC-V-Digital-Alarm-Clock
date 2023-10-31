@@ -571,7 +571,7 @@ The Instruction at which my output changing is
 
 ```
 
-00000013 at this instruction my output is changing from low to high which means that my buzzer is on(Alarm time is reached).
+ At this instruction my output is changing from low to high which means that my buzzer is on.Buzzer on refers to Alarm Time is reached and it is getting displayed.
 
 
 ![output_waveform](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/de3606c0-567c-43b5-8bc2-dee06540404b)
