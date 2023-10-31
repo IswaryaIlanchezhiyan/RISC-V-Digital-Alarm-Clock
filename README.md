@@ -589,6 +589,8 @@ First Instruction is verified:
 
 The term "gate level" refers to the netlist view of a circuit, usually produced by logic synthesis. So while RTL simulation is pre-synthesis, GLS is post-synthesis. The netlist view is a complete connection list consisting of gates and IP models with full functional and timing behavior. RTL simulation is a zero delay environment and events generally occur on the active clock edge. GLS can be zero delay also, but is more often used in unit delay or full timing mode. 
 
+**UART Functionality Test:**
+
 ```
 
 yosys
@@ -601,6 +603,8 @@ write_verilog synth_test_asic.v
 
 ```
 
+
+**Performing  GLS Simulation**
  ```
 
 yosys
