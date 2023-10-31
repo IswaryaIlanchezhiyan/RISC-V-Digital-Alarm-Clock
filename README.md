@@ -563,6 +563,13 @@ iverilog -o test testbench.v processor.v
 ./test
 
 ```
+The Instruction at which my output changing is
+
+```
+
+1023c:	00000013          	nop
+
+```
 
 00000013 at this instruction my output is changing from low to high which means that my buzzer is on(Alarm time is reached).
 
