@@ -581,7 +581,7 @@ The Instruction at which my output changing is
 
 First Instruction is verified:
 
-+ 10054:	fc010113          	addi	sp,sp,-64
+**10054:	fc010113          	addi	sp,sp,-64**
 
 ![Screenshot from 2023-10-27 22-23-31](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/393f231a-90a2-4774-b515-147310656053)
 
@@ -589,7 +589,7 @@ First Instruction is verified:
 
 The term "gate level" refers to the netlist view of a circuit, usually produced by logic synthesis. So while RTL simulation is pre-synthesis, GLS is post-synthesis. The netlist view is a complete connection list consisting of gates and IP models with full functional and timing behavior. RTL simulation is a zero delay environment and events generally occur on the active clock edge. GLS can be zero delay also, but is more often used in unit delay or full timing mode. 
 
-**UART Functionality Test:**
+**UART Functionality Test**
 
 ```
 
