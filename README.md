@@ -626,6 +626,7 @@ iverilog -o test testbench.v synth_test_processor.v sky130_sram_1kbyte_1rw1r_32x
 
 ```
 
+![Screenshot from 2023-10-31 21-38-38](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/294ea373-2800-4d08-9aed-355796c9a3a7)
 
 
 
