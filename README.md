@@ -629,9 +629,15 @@ iverilog -o test testbench.v synth_test_processor.v sky130_sram_1kbyte_1rw1r_32x
 ![outputGLS](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/1f189e4c-3903-4f9d-b42c-60a8cee6a109)
 
 
+**Graphical Version of Logic realized**
 
+```
 
+show wrapper
 
+```
+
+![Uploading Screenshot from 2023-10-31 17-09-24.png…]()
 
 
 
