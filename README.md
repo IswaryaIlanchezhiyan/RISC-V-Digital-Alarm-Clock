@@ -604,7 +604,7 @@ write_verilog synth_test_asic.v
 ```
 
 
-**Performing  GLS Simulation**
+**Performing GLS**
  ```
 
 yosys
