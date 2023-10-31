@@ -564,6 +564,8 @@ iverilog -o test testbench.v processor.v
 
 ```
 
+00000013 at this instruction my output is changing from low to high which means that my buzzer is on(Alarm time is reached).
+
 
 ![output_waveform](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/de3606c0-567c-43b5-8bc2-dee06540404b)
 
