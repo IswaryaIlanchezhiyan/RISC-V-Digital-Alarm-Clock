@@ -585,6 +585,47 @@ First Instruction is verified:
 
 ![Screenshot from 2023-10-27 22-23-31](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/393f231a-90a2-4774-b515-147310656053)
 
+# Gate Level Simulation
+
+The term "gate level" refers to the netlist view of a circuit, usually produced by logic synthesis. So while RTL simulation is pre-synthesis, GLS is post-synthesis. The netlist view is a complete connection list consisting of gates and IP models with full functional and timing behavior. RTL simulation is a zero delay environment and events generally occur on the active clock edge. GLS can be zero delay also, but is more often used in unit delay or full timing mode. 
+
+```
+
+yosys
+read_liberty -lib sky130_fd_sc_hd__tt_025C_1v80_512.lib
+read_verilog processor1.v
+synth -top wrapper
+dfflibmap -liberty sky130_fd_sc_hd__tt_025C_1v80_512.lib
+abc -liberty sky130_fd_sc_hd__tt_025C_1v80_512.lib
+write_verilog synth_test_asic.v
+
+```
+
+ ```
+
+yosys
+read_liberty -lib sky130_fd_sc_hd__tt_025C_1v80_512.lib
+read_verilog processor5.v
+synth -top wrapper
+dfflibmap -liberty sky130_fd_sc_hd__tt_025C_1v80_512.lib
+abc -liberty sky130_fd_sc_hd__tt_025C_1v80_512.lib
+write_verilog synth_test_processor.v
+
+```
+
+For generating output waveform:
+
+```
+
+iverilog -o test testbench.v synth_test_processor.v sky130_sram_1kbyte_1rw1r_32x512_8.v sky130_fd_sc_hd.v primitives.v
+./test
+
+```
+
+![outputGLS](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/1f189e4c-3903-4f9d-b42c-60a8cee6a109)
+
+
+
 
 
 
