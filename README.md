@@ -579,11 +579,24 @@ The Instruction at which my output changing is
 
 # Instructions Verification
 
-First Instruction is verified:
 
-**10054:	fc010113          	addi	sp,sp,-64**
+
+```
+
+10054:	fc010113          	addi	sp,sp,-64
+
+```
 
 ![Screenshot from 2023-10-27 22-23-31](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/393f231a-90a2-4774-b515-147310656053)
+
+```
+
+ 101e8:	00ff6f33          	or	t5,t5,a5
+
+```
+
+![or](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/5d52498a-66c7-4335-a574-355c7d628403)
+
 
 # Gate Level Simulation
 
