@@ -640,6 +640,11 @@ show wrapper
 
 ![Screenshot from 2023-10-31 17-09-24](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/310f0275-87bb-4619-8354-14a9b227727f)
 
+# Acknowledgement
+
+1.Kunal Ghosh, VSD Corp. Pvt. Ltd.
+2.Mayank Kabra, Chipcron. Pvt. Ltd.
+
 
 
 
