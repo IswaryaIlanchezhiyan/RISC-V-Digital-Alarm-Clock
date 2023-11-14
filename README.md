@@ -856,6 +856,36 @@ magic -T /home/iswarya/OpenLane/open_pdks/sky130/sky130A/libs.tech/magic/sky130A
 ![routing_layout](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/9b3a277b-9ff9-4390-8f30-87fa05a72e00)
 
 
+# OpenLane Interactive Flow
+
+```
+
+cd OpenLane
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design project_name
+run_synthesis
+run_floorplan
+run_placement
+run_cts
+gen_pdn
+run_routing
+run_magic
+run_magic_spice_export
+run_magic_drc
+run_antenna_check
+
+```
+
+# OpenLane Non-Interactive Flow
+
+```
+
+cd OpenLane 
+make mount
+./flow.tcl -design project_name
+
+```
 
 
 
