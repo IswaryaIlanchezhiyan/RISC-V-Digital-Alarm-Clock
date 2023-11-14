@@ -668,6 +668,214 @@ The PNR flow includes the following stages:
 + Routing
 + Post route ECO and tape out
 
+The PNR flow involves: 
+
++ Placing and routing all the instances in a netlist in a defined core area
++ Meeting design rules and timing requirements
++ Laying out analog macros, SRAMs, and digital areas
++ Routing power and signals between them
++ Setting up automatic placement and routing of the digital areas
+
+**Preparing the Design**
+
+Create a project folder in OpenLane designs folder and add all the lib files,lef files,gds files,max-min lef files,min-max lib files,config.json and processor.v .
+
+```
+
+cd OpenLane
+make mount
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design project_name
+
+```
+
+![make_mount](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/3627be86-40a4-42fe-a250-19a69907da94)
+
+
+**Synthesis**
+
+Synthesis in ASIC is the process of converting a behavioral description of a circuit, in the form of RTL, into an equivalent netlist made of cells from the standard cell library. The netlist can then be implemented as a physical silicon structure. 
+
+Synthesis is an important step in chip designing flow as it allows us to visualize the design as it will appear after manufacturing.
+
+```
+
+run_synthesis
+
+```
+
+![run_synthesis](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/c16047a1-747b-4be3-b270-c8345d69e65e)
+
+
+![synth_report](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/92889177-70d4-4b35-ab69-c976067a3a11)
+
+**Floorplan**
+
+Floorplanning is the process of placing blocks or macros in the chip or core area. It is the first step in RTL-to-GDSII design. 
+
+Floorplanning includes: 
+
++ Block placement
++ Design portioning
++ Pin placement
++ Power optimization
++ Creating the boundary and core area
++ Creating wire tracks for placement of standard cells
+
+A well-designed floorplan can lead to an ASIC design with higher performance and optimum area. 
+
+Floorplanning can be challenging because it deals with: 
+
++ The placement of I/O pads and macros
++ Power and ground structure
++ Purchased intellectual property blocks (IP-blocks), such as a processor core, come in predefined area blocks
++ Some IP-blocks come with legal limitations such as permitting no routing of signals directly above the block
+
+
+```
+
+run_floorplan
+
+```
+
+![run-floorplan](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/15ef1580-fbf1-408e-b608-8e6fb50b38f8)
+
+
+To see the Layout ,go to runs --> results --> floorplan and open the terminal and type the following command.
+
+```
+
+magic -T /home/iswarya/OpenLane/open_pdks/sky130/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read wrapper.def &
+
+```
+
+![floorplan_layout](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/8c07d530-1f75-4f87-a9aa-221d8c6b14cc)
+
+Core Area:
+
+![core_area](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/d0ed446c-1776-41c7-afac-2ecea7377ee8)
+
+Die Area:
+
+![die_area](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/f1675cce-6f58-4584-911f-13b67192825a)
+
+**Placement**
+
+ It refers to the process of determining the physical locations or positions of individual logic elements, such as standard cells (gates, flip-flops, etc.), macros, or other functional blocks, within the semiconductor die or chip.
+
+The placement stage is a crucial step in the overall ASIC design flow, occurring after logic synthesis and before routing. It involves mapping the synthesized logic onto the physical chip layout, with the aim of optimizing various factors including:
+
++ Timing
++ Area
++ Power
++ Signal Integrity
+
+Placement algorithms in ASIC design tools aim to optimize these aspects by considering the logical relationships between the components, the physical constraints of the chip, and any user-defined constraints or goals specified by the designer.
+
+Some common considerations during placement include:
+
++ Grouping related logic elements together to minimize signal delay.
++ Balancing the placement to avoid congested areas and achieve a more uniform distribution of logic elements.
++ Considering clock trees and special high-speed paths to maintain synchronous operation.
++ Accommodating I/O (input/output) interfaces in favorable locations to ease connectivity with external components.
+
+```
+
+run_placement
+
+```
+
+![run_placement](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/5b68c388-753e-4175-908a-65364f442e76)
+
+To view the Layout,go to runs --> results --> placement and open the terminal and type the following command.
+
+```
+
+magic -T /home/iswarya/OpenLane/open_pdks/sky130/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read wrapper.def &
+
+```
+
+![placement_layout](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/bd5cac63-d151-431a-b6d8-b0488f8e7cfb)
+
+**CTS**
+
+Clock Tree Synthesis (CTS) is the technique of balancing the clock delay to all clock inputs by inserting buffers/inverters along the clock routes of an ASIC design. As a result, CTS is used to balance the skew and reduce insertion latency.
+
+```
+
+run_cts
+
+```
+
+![run_cts](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/8f009e8d-54cd-49ea-a822-075c41600565)
+
+Timing Report:
+
+![summary_report](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/e7af3143-3ded-4a96-8cba-7df86e8d95a7)
+
+Area Report:
+
+![area_report](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/86f6b845-8409-4e8e-b247-6fdadc90a1fb)
+
+Skew Report:
+
+![skew_report](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/9d199f06-dbe5-4569-87fb-7da4fa6209d1)
+
+Power Report:
+
+![power_report](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/a3fdfb4d-cbeb-4795-bffc-608f3c2ea355)
+
+**Routing**
+
+In ASIC design, routing is the process of creating physical connections based on logical connectivity. Routing is the stage after CTS and optimization where exact paths for the interconnection of standard cells and macros and I/O pins are determined.
+
+Routing creates physical connections to all clock and the signal pins through metal interconnects. Routed metal paths must meet timing, clock skew, max trans/cap requirements and also physical DRC requirements. 
+
+The routing mechanism establishes the specific pathways for interconnections. This contains the regular cell and macro pins, block boundary pins, and chip boundary pads.
+
+```
+
+run_routing
+
+```
+
+![run_routing](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/5e0f95d0-3e46-4384-a28f-37a051c8e4df)
+
+To view the Layout,go to runs --> results --> routing and open the terminal and type the following command.
+
+```
+
+magic -T /home/iswarya/OpenLane/open_pdks/sky130/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read wrapper.def &
+
+```
+
+![routing_layout](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/9b3a277b-9ff9-4390-8f30-87fa05a72e00)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Acknowledgement
