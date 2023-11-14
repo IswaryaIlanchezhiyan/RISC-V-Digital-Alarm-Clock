@@ -855,6 +855,23 @@ magic -T /home/iswarya/OpenLane/open_pdks/sky130/sky130A/libs.tech/magic/sky130A
 
 ![routing_layout](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/9b3a277b-9ff9-4390-8f30-87fa05a72e00)
 
+# Performance Calculation
+
+```
+
+                              1
+Max Performance =  ------------------------
+                     clock period - slack(setup)
+
+```
+
+
+```
+
+Max Performance = Ghz
+
+```
+
 
 # OpenLane Interactive Flow
 
