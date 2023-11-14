@@ -653,6 +653,23 @@ show wrapper
 
 ![Screenshot from 2023-10-31 17-09-24](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/310f0275-87bb-4619-8354-14a9b227727f)
 
+# Physical Design
+
+**Place and Route (PnR)**
+
+PNR (Place and Route) is a backend process in the ASIC (Application Specific Integrated Circuit) flow. It is the physical design process of transforming a netlist into a layout that can be manufactured.
+
+The PNR flow includes the following stages: 
+
++ Synthesis
++ Floorplanning
++ Placement
++ Clock tree synthesis
++ Routing
++ Post route ECO and tape out
+
+
+
 # Acknowledgement
 
 1.Kunal Ghosh, VSD Corp. Pvt. Ltd.
