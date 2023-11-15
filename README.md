@@ -798,7 +798,8 @@ magic -T /home/iswarya/OpenLane/open_pdks/sky130/sky130A/libs.tech/magic/sky130A
 
 ```
 
-![placement_layout](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/bd5cac63-d151-431a-b6d8-b0488f8e7cfb)
+![Screenshot from 2023-11-15 14-51-46](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/79d98b28-edf4-45ba-9fd4-b93d0b90b6bb)
+
 
 **CTS**
 
