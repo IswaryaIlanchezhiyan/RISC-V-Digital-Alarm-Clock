@@ -754,11 +754,13 @@ magic -T /home/iswarya/OpenLane/open_pdks/sky130/sky130A/libs.tech/magic/sky130A
 
 Core Area:
 
-![core_area](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/d0ed446c-1776-41c7-afac-2ecea7377ee8)
+![Screenshot from 2023-11-15 14-37-22](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/c1f78352-0b05-4177-a6e0-c6cb6d63c57b)
+
 
 Die Area:
 
-![die_area](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/f1675cce-6f58-4584-911f-13b67192825a)
+![Screenshot from 2023-11-15 14-37-41](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/e4ad7b52-111e-4e08-8c4b-fa143b65b096)
+
 
 **Placement**
 
@@ -854,6 +856,10 @@ magic -T /home/iswarya/OpenLane/open_pdks/sky130/sky130A/libs.tech/magic/sky130A
 ```
 
 ![routing_layout](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/9b3a277b-9ff9-4390-8f30-87fa05a72e00)
+
+
+![Screenshot from 2023-11-15 14-41-57](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/e77867c4-d16a-448a-8079-e06b442561f9)
+
 
 # Performance Calculation
 
