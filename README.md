@@ -871,20 +871,27 @@ magic -T /home/iswarya/OpenLane/open_pdks/sky130/sky130A/libs.tech/magic/sky130A
 
 Post Routing Power Report:
 
-![Screenshot from 2023-11-15 14-45-50](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/7aecf706-8710-48c7-9440-248df81e70ea)
+![Screenshot from 2023-12-10 18-34-58](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/9f312e16-b60b-4015-8aaa-d6197192fe93)
+
+
 
 Post Routing Skew Report:
 
-![Screenshot from 2023-11-15 14-47-25](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/3ecb6b26-f905-43d7-bd7e-8b2a06bc5764)
+
+![Screenshot from 2023-12-10 18-35-11](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/5697465e-3889-4347-a3db-ad876fbb3e56)
 
 
 Post Routing Timing Report:
 
-![Screenshot from 2023-11-15 14-48-20](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/8c989721-f2a3-4b69-b004-44830c1725ff)
+
+![Screenshot from 2023-12-10 18-35-25](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/a2ff360a-7e90-4514-a0d4-ec6f11fabea5)
+
 
 Post Routing Area Report:
 
-![Screenshot from 2023-11-15 14-48-57](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/170a53f5-f119-47c2-8532-c4183ec5d8d4)
+
+![Screenshot from 2023-12-10 18-35-38](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/85cc61d0-9dce-45ee-9c63-b4ebc1e28d2e)
+
 
 
 # Performance Calculation
