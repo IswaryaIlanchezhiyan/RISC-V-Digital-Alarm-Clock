@@ -815,21 +815,26 @@ run_cts
 
 Timing Report:
 
-![Screenshot from 2023-11-15 14-35-22](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/fdeacd8c-7ceb-4d4e-b464-7b31ae54c1a1)
+![Screenshot from 2023-12-10 18-30-18](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/a06a4b7f-3a40-44ac-b189-f7c592c642ff)
+
 
 Area Report:
 
-![Screenshot from 2023-11-15 14-35-48](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/5ee51cfe-7d63-43e8-bc62-c28c5de5f8cc)
+
+![Screenshot from 2023-12-10 18-30-31](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/7d4e9617-905d-4c57-9bc4-92d012ba4e7a)
+
 
 
 Skew Report:
 
-![Screenshot from 2023-11-15 14-34-53](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/81741400-55b6-41c0-902e-df08313dd3ca)
+![Screenshot from 2023-12-10 18-29-56](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/9d9101fa-42d3-4080-957d-6278b017acf9)
+
 
 
 Power Report:
 
-![Screenshot from 2023-11-15 14-34-23](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/bda9e0a3-9304-46c6-a8bb-1127bb57902b)
+![Screenshot from 2023-12-10 18-29-38](https://github.com/IswaryaIlanchezhiyan/RISC-V-Digital-Alarm-Clock/assets/140998760/6b64df32-1c2d-48ae-b103-1e4669c9c04a)
+
 
 
 **Routing**
