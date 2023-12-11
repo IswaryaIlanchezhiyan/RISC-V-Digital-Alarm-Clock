@@ -907,7 +907,7 @@ Max Performance =  ------------------------
 
 ```
 
-Max Performance = 0.0337268 Ghz
+Max Performance = 33.7268 Mhz
 
 ```
 
